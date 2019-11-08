@@ -2,6 +2,7 @@
     "name": "zxdstyle\/xiexing-count",
     "description": "xiexing count",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "zxdstyle",
