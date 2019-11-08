@@ -1,0 +1,26 @@
+{
+    "name": "zxdstyle\/xiexing-count",
+    "description": "xiexing count",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zxdstyle",
+            "email": "1430822515@qq.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xiexing\/Count\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Xiexing\\Count\\ServiceProvider"
+            ]
+        }
+    }
+}
