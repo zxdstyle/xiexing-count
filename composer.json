@@ -17,6 +17,7 @@
             "Xiexing\/Count\\": "src"
         }
     },
+    "minimum-stability": "stable",
     "extra": {
         "laravel": {
             "providers": [
