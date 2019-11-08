@@ -1,0 +1,24 @@
+{
+    "name": "zxdstyle\/count",
+    "description": "zxdstyle count",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zxdstyle",
+            "email": "1430822515@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Zxdstyle\\Count\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zxdstyle\\Count\\ServiceProvider"
+            ]
+        }
+    }
+}
