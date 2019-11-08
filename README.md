@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require /xdstyle/xiexing-count -vvv
+$ composer require zxdstyle/xiexing-count -vvv
 ```
 
 ## Usage
