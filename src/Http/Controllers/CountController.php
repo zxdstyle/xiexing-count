@@ -10,6 +10,7 @@ namespace Zxdstyle\Count\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Zxdstyle\Count\Http\Services\Captcha;
 
 class CountController extends Controller
 {
@@ -25,20 +26,35 @@ class CountController extends Controller
      * @return mixed
      * @throws \Exception
      */
-    public function store(Request $request, Client $client)
+    public function store(Request $request, Client $client, Captcha $captcha)
     {
         $url = config('xiexing.count.url');
+
+        $params = $request->input('data');
 
         if (empty($url)) {
             throw new \Exception('请配置积分计算器转发地址');
         }
 
-        $response = $client->post($url.'/site/curl', [
-            'json' => $request->input('data')
-        ]);
+        # 检测请求次数是否超过三次 超过三次返回图像验证码
+        $captcha = $captcha->check($request, 'count');
 
-        $content = $response->getBody()->getContents();
+        # 最后一次提交增加请求次数
+        if ($params['which'] === 'p12') {
+            $captcha->addTimes($request, 'count');
+        }
 
-        return response()->json(json_decode($content));
+        # 检测请求次数是否超过三次 超过三次返回图像验证码
+        if ($captcha) {
+            $response = $client->post($url.'/site/curl', [
+                'json' => $params
+            ]);
+
+            $content = $response->getBody()->getContents();
+
+            return response()->json(json_decode($content));
+        } else {
+            return response()->json(['code' => false,'prompt' => '失败','img_code' => 1]);
+        }
     }
 }
