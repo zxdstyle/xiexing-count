@@ -50,6 +50,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->registerConfigs();
 
+        if ($this->app->runningInConsole()) {
+            $this->registerPublishableResources();
+        }
+
         $this->app->singleton(Count::class, function(){
             return new Count();
         });
@@ -71,5 +75,29 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             dirname(__DIR__) . '/publishable/config/xiexing.php',
             'xiexing'
         );
+    }
+
+    /**
+     * Register the publishable files.
+     */
+    protected function registerPublishableResources()
+    {
+        $publishablePath = dirname(__DIR__) . '/publishable';
+
+        $publishable = [
+            'xiexing_config' => [
+                "{$publishablePath}/config/xiexing.php" => config_path('xiexing.php'),
+            ],
+            'xiexing_assets' => [
+                "{$publishablePath}/assets/" => public_path('vendor/xiexing/assets'),
+            ],
+            'xiexing_views' => [
+                dirname(__DIR__) . "/resources/views/" => resource_path('views/vendor/xiexing'),
+            ],
+        ];
+
+        foreach ($publishable as $group => $paths) {
+            $this->publishes($paths, $group);
+        }
     }
 }
