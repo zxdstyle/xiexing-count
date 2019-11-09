@@ -32,7 +32,7 @@ class CalcController extends Controller
 
         # 检测请求次数是否超过三次 超过三次返回图像验证码
         if ($isPass) {
-            $response = $client->post($url.'/form-input', [
+            $response = $client->post($url.'/site/curl-form-input', [
                 'json' => $params
             ]);
 
