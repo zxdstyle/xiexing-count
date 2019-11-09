@@ -26,10 +26,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'count');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'xiexing');
 
         Route::group($this->routesConfig(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/count.php');
+            $this->loadRoutesFrom(__DIR__ . '/../routes/xiexing.php');
         });
     }
 
@@ -39,10 +39,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function routesConfig()
     {
         return [
-            'prefix'     => config('count.route.prefix'),
+            'prefix'     => config('xiexing.count.route.prefix'),
             'namespace'  => 'Zxdstyle\Count\Http\Controllers',
-            'domain'     => config('count.domain', null),
-            'as'         => 'count.',
+            'domain'     => config('xiexing.count.domain', null),
             'middleware' => 'web',
         ];
     }
@@ -69,8 +68,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     protected function registerConfigs()
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__).'/publishable/config/count.php',
-            'count'
+            dirname(__DIR__) . '/publishable/config/xiexing.php',
+            'xiexing'
         );
     }
 }
