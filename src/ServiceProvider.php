@@ -9,8 +9,15 @@
 namespace Zxdstyle\Count;
 
 
-class ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
     public function register()
     {
         $this->app->singleton(Count::class, function(){
