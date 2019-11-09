@@ -26,9 +26,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'xiexing');
-
         $this->loadRoutesFrom(__DIR__ . '/../routes/xiexing.php');
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'xiexing');
     }
 
 
