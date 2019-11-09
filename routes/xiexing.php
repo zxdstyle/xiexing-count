@@ -14,3 +14,5 @@ Route::post('score/store', 'EvaluateController@store');
 
 # 积分计算器数据转发
 Route::post('counter', 'CountController@store');
+
+Route::post('site/img-code', 'CountController@captcha');

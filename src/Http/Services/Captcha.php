@@ -8,15 +8,28 @@
 
 namespace Zxdstyle\Count\Http\Services;
 
+use Validator;
 use Illuminate\Http\Request;
 
 class Captcha
 {
     public function check(Request $request, $interface)
     {
-        $params = $request->input('data');
+        if ($interface === 'count') {
+            $params = $request->input('data');
+        } else {
+            $params = $request->all();
+        }
+
 
         if (!empty($params['img_code'])) {
+            $validator = Validator::make($params, [
+                'img_code' => 'required|captcha'
+            ]);
+
+            if ($validator->fails()) {
+                return false;
+            }
 
         } else {
             $key = $interface.'submit_time';
@@ -25,8 +38,8 @@ class Captcha
             if ($times && $times >= 3) {
                 return false;
             }
-            return true;
         }
+        return true;
     }
 
     public function addTimes(Request $request, $interface)

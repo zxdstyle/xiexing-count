@@ -36,16 +36,18 @@ class CountController extends Controller
             throw new \Exception('请配置积分计算器转发地址');
         }
 
-        # 检测请求次数是否超过三次 超过三次返回图像验证码
-        $captcha = $captcha->check($request, 'count');
+        $isPass = true;
 
         # 最后一次提交增加请求次数
         if ($params['which'] === 'p12') {
+            # 检测请求次数是否超过三次 超过三次返回图像验证码
+            $isPass = $captcha->check($request, 'count');
+
             $captcha->addTimes($request, 'count');
         }
 
         # 检测请求次数是否超过三次 超过三次返回图像验证码
-        if ($captcha) {
+        if ($isPass) {
             $response = $client->post($url.'/site/curl', [
                 'json' => $params
             ]);
@@ -56,5 +58,10 @@ class CountController extends Controller
         } else {
             return response()->json(['code' => false,'prompt' => '失败','img_code' => 1]);
         }
+    }
+
+    public function captcha()
+    {
+        return response()->json('<img id="imgcode" src="'.captcha_src().'">');
     }
 }
