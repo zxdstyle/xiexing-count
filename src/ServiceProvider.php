@@ -9,6 +9,7 @@
 namespace Zxdstyle\Count;
 
 use Illuminate\Support\Facades\Route;
+use Zxdstyle\Count\Commands\InstallCommand;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -17,7 +18,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Bootstrap the application services.
@@ -42,7 +43,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             'prefix'     => config('xiexing.count.route.prefix'),
             'namespace'  => 'Zxdstyle\Count\Http\Controllers',
             'domain'     => config('larecipe.domain', null),
-            'as'         => 'xiexing.',
             'middleware' => 'web',
         ];
     }
@@ -54,6 +54,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->registerPublishableResources();
+            $this->registerConsoleCommands();
         }
 
         $this->app->singleton(Count::class, function(){
@@ -91,7 +92,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 "{$publishablePath}/config/xiexing.php" => config_path('xiexing.php'),
             ],
             'xiexing_assets' => [
-                "{$publishablePath}/assets/" => public_path('vendor/xiexing/assets'),
+                "{$publishablePath}/assets/zjtrain" => public_path('zjtrain'),
             ],
             'xiexing_views' => [
                 dirname(__DIR__) . "/resources/views/" => resource_path('views/vendor/xiexing'),
@@ -101,5 +102,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         foreach ($publishable as $group => $paths) {
             $this->publishes($paths, $group);
         }
+    }
+
+    /**
+     * Register the commands accessible from the Console.
+     */
+    protected function registerConsoleCommands()
+    {
+        $this->commands(InstallCommand::class);
     }
 }

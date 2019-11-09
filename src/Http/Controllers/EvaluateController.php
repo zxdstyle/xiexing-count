@@ -11,15 +11,15 @@ namespace Zxdstyle\Count\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
-class CountController extends Controller
+class EvaluateController extends Controller
 {
     public function index()
     {
-        return $this->view('count');
+        return $this->view('evaluate');
     }
 
     /**
-     * 积分计算器数据转发
+     * 落户自测接口转发
      * @param Request $request
      * @param Client $client
      * @return mixed
@@ -27,14 +27,14 @@ class CountController extends Controller
      */
     public function store(Request $request, Client $client)
     {
-        $url = config('xiexing.count.url');
+        $url = config('xiexing.evaluate.url');
 
         if (empty($url)) {
-            throw new \Exception('请配置积分计算器转发地址');
+            throw new \Exception('请配置落户评测转发地址');
         }
 
-        $response = $client->post($url.'/site/curl', [
-            'json' => $request->input('data')
+        $response = $client->post($url.'/site/curl-store', [
+            'json' => $request->all()
         ]);
 
         $content = $response->getBody()->getContents();

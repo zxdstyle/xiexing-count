@@ -1,14 +1,24 @@
-@extends('point.layouts.app')
+<?php
+use App\Models\Option;
+
+$config = Option::getWebSiteConfig();
+?>
+
+@extends('point.layouts.m')
 
 @section('header')
-    @include('point.layouts.header')
-@stop
-
-@section('tab')
-    @include('point.layouts.tab')
+    <div class="m_header">
+        <div class="header">
+            <a href="javascript:history.go(-1)">
+                <i class="iconfont icon-jiantouzuo"></i>
+            </a>
+            <div class="title">落户自测</div>
+        </div>
+    </div>
 @stop
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('/web/css/m_list.css?v=201910281704') }}">
     <link rel="stylesheet" type="text/css" href="../zjtrain/styles/pc/global.min.css?v=201908261112" media="screen and (min-width: 768px)"/>
     <link rel="stylesheet" type="text/css" href="../zjtrain/styles/pc/pages/Integral_calculation.min.css?v=201908261112" media="screen and (min-width: 768px)"/>
     <link rel="stylesheet" type="text/css" href="../zjtrain/styles/pc/pages/stay_test.min.css?v=201908261112" media="screen and (min-width: 768px)"/>
@@ -31,16 +41,19 @@
         em{
             font-style: normal;
         }
+        .fix-box{
+            display: none;
+        }
     </style>
 @stop
 
 @section('content')
 @verbatim
-    <div id="calculation" class="subject-main">
+    <div id="calculation">
         <!-- 面包屑 -->
         <div class="w crumbs">
             <h4>
-                <a href="{{ route('home') }}">上海积分网 ></a>
+                <a href="{{ route('home') }}">沪客网 ></a>
                 <a class="blue">上海市积分落户自动评测系统</a>
             </h4>
         </div>
@@ -529,7 +542,7 @@
 @stop
 
 @section('footer')
-    @include('point.layouts.footer', ['config' => $config])
+    @include('point.layouts.mfooter', ['config' => $config])
 @stop
 
 @section('js')
@@ -539,7 +552,7 @@
     <script>
         function screenLoad(){
             if(screen.width<=768){
-                document.write('<script src="../zjtrain/js/m/lib/lib-flexible-2.0/index.min.js"><\/script>');
+                document.write('<script src="../zjtrain/js/m/lib/lib-flexible-2.0/index.js"><\/script>');
                 document.write('<script src="../zjtrain/js/m/guiji.min.js"><\/script>');
                 document.write('<script src="../zjtrain/js/m/commonForm.min.js"><\/script>');
                 document.write('<script src="../zjtrain/js/m/mStayTest.min.js?v=201903110931"><\/script>');

@@ -8,8 +8,12 @@ return [
     |
     */
     'count' => [
+        # 路由前缀
         'prefix' => env('COUNT_ROUTE_PREFIX', ''),
-        'route' => env('COUNT_ROUTE', 'count')
+        # 路由URL
+        'route' => env('COUNT_ROUTE', 'evaluate'),
+        # 转发URL
+        'url' => env('COUNT_URL', '')
     ],
 
     /*
@@ -19,7 +23,11 @@ return [
     |
     */
     'evaluate' => [
-        'prefix' => env('COUNT_ROUTE_PREFIX', ''),
-        'route' => env('COUNT_ROUTE', 'evaluate')
+        # 路由前缀
+        'prefix' => env('EVALUATE_ROUTE_PREFIX', ''),
+        # 路由URL
+        'route' => env('EVALUATE_ROUTE', 'evaluate'),
+        # 转发URL
+        'url' => env('EVALUATE_URL', '')
     ]
 ];
