@@ -28,23 +28,9 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'xiexing');
 
-        Route::group($this->routesConfig(), function () {
-            $this->loadRoutesFrom(__DIR__ . '/../routes/xiexing.php');
-        });
+        $this->loadRoutesFrom(__DIR__ . '/../routes/xiexing.php');
     }
 
-    /**
-     * @return array
-     */
-    protected function routesConfig()
-    {
-        return [
-            'prefix'     => config('xiexing.count.route.prefix'),
-            'namespace'  => 'Zxdstyle\Count\Http\Controllers',
-            'domain'     => config('xiexing.count.domain', null),
-            'middleware' => 'web',
-        ];
-    }
 
     public function register()
     {
