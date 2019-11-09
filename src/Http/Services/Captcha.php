@@ -15,12 +15,11 @@ class Captcha
 {
     public function check(Request $request, $interface)
     {
-        if ($interface === 'count') {
-            $params = $request->input('data');
-        } else {
+        if ($interface === 'evaluate') {
             $params = $request->all();
+        } else {
+            $params = $request->input('data');
         }
-
 
         if (!empty($params['img_code'])) {
             $validator = Validator::make($params, [

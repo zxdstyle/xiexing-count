@@ -28,6 +28,21 @@ return [
         # 路由URL
         'route' => env('EVALUATE_ROUTE', 'evaluate'),
         # 转发URL
-        'url' => env('EVALUATE_URL', '')
+        'url' => env('EVALUATE_URL', env('COUNT_URL'))
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | 个税社保计算器
+    |--------------------------------------------------------------------------
+    |
+    */
+    'calc' => [
+        # 路由前缀
+        'prefix' => env('CALC_ROUTE_PREFIX', ''),
+        # 路由URL
+        'route' => env('CALC_ROUTE', 'calc'),
+        # 转发URL
+        'url' => env('CALC_URL', env('COUNT_URL'))
     ]
 ];

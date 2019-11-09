@@ -16,3 +16,5 @@ Route::post('score/store', 'EvaluateController@store');
 Route::post('counter', 'CountController@store');
 
 Route::post('site/img-code', 'CountController@captcha');
+
+Route::post('form-input', 'CalcController@store');
