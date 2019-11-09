@@ -11,8 +11,6 @@ namespace Zxdstyle\Count;
 
 class ServiceProvider
 {
-    protected $defer = true;
-
     public function register()
     {
         $this->app->singleton(Count::class, function(){
