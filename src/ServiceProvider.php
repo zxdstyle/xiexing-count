@@ -8,6 +8,7 @@
 
 namespace Zxdstyle\Count;
 
+use Illuminate\Support\Facades\Route;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -18,8 +19,38 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected $defer = true;
 
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'count');
+
+        Route::group($this->routesConfig(), function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/count.php');
+        });
+    }
+
+    /**
+     * @return array
+     */
+    protected function routesConfig()
+    {
+        return [
+            'prefix'     => config('count.route.prefix'),
+            'namespace'  => 'Zxdstyle\Count\Http\Controllers',
+            'domain'     => config('count.domain', null),
+            'as'         => 'count.',
+            'middleware' => 'web',
+        ];
+    }
+
     public function register()
     {
+        $this->registerConfigs();
+
         $this->app->singleton(Count::class, function(){
             return new Count();
         });
@@ -30,5 +61,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     public function provides()
     {
         return [Count::class, 'count'];
+    }
+
+    /**
+     * Register the package configs.
+     */
+    protected function registerConfigs()
+    {
+        $this->mergeConfigFrom(
+            dirname(__DIR__).'/publishable/config/count.php',
+            'count'
+        );
     }
 }
