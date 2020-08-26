@@ -2,18 +2,16 @@
     "name": "zxdstyle/count",
     "description": "zxdstyle count",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "zxdstyle",
-            "email": "1430822515@qq.com"
-        }
-    ],
+    "authors": [{
+        "name": "zxdstyle",
+        "email": "1430822515@qq.com"
+    }],
     "require": {
-        "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-        "illuminate/view": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+        "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0|~6.*|~7.*",
+        "illuminate/view": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0|~6.*|~7.*",
         "whichbrowser/parser": "^2.0",
         "guzzlehttp/guzzle": "^6.4",
-        "mews/captcha": "2.3.0"
+        "mews/captcha": "~3.2"
     },
     "autoload": {
         "psr-4": {
