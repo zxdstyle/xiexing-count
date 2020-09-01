@@ -108,8 +108,6 @@ class EvaluateController extends Controller
             return $this->success();
         }
 
-        return response()->json([
-            'code' => false,'prompt' => '失败','img_code' => 1, 'status' => 429
-        ], 429);
+        return ['code' => false,'prompt' => '失败','img_code' => 1];
     }
 }

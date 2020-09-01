@@ -92,6 +92,8 @@ class CalcController extends Controller
             return $this->success();
         }
 
-        return response()->json(['code' => false,'prompt' => '失败','img_code' => 1]);
+        return response()->json([
+            'code' => false,'prompt' => '失败','img_code' => 1, 'status' => 429
+        ], 429);
     }
 }
