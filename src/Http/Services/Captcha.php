@@ -21,8 +21,11 @@ class Captcha
             $params = $request->input('data');
         }
 
-        if (!empty($params['img_code'])) {
-            $validator = Validator::make($params, [
+        if (!empty($request->input('img_code')) || !empty($request->input('captcha'))) {
+
+            $validator = Validator::make([
+                'img_code' => $request->input('img_code') ?? $request->input('captcha')
+            ], [
                 'img_code' => 'required|captcha'
             ]);
 

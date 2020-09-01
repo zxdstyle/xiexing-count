@@ -93,7 +93,9 @@ class CalcController extends Controller
         }
 
         return response()->json([
-            'code' => false,'prompt' => '失败','img_code' => 1, 'status' => 429
+            'error' => "请求频繁",
+            'captcha' => captcha_src(),
+            'code' => 429 //your custom code
         ], 429);
     }
 }
