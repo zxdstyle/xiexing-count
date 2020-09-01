@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 
-
-
 Route::get(config('xiexing.count.route'), 'CountController@index')->name('count');
 
 Route::get(config('xiexing.evaluate.route'), 'EvaluateController@index')->name('evaluate');

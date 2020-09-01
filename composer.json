@@ -9,7 +9,7 @@
     "require": {
         "whichbrowser/parser": "^2.0",
         "guzzlehttp/guzzle": "^6.4",
-        "mews/captcha": "^3.0"
+        "mews/captcha": "^2.3|^3.0"
     },
     "autoload": {
         "psr-4": {
