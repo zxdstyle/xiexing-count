@@ -80,7 +80,7 @@ class CalcController extends Controller
 
                 if ($exception instanceof ClientException) {
                     $response = $exception->getResponse()->getBody()->getContents();
-
+                    logger()->error($response);
                     $error = json_decode($response)->error;
                 }
 
