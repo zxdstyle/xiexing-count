@@ -60,6 +60,7 @@ class CalcController extends Controller
             $curlData = [
                 'component' => 'TAX_CALCULATION',
                 'phone' => $params['phone'],
+                'name' => $params['name'],
                 'url' => $params['country'],
                 'old_tags' => $request->input("data.sourceChange", []),
                 'url_data' => $request->input("data.source", ""),
