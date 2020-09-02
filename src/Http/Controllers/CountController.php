@@ -47,8 +47,6 @@ class CountController extends Controller
             ], 400);
         }
 
-        $which = $request->input("data.which");
-
         $isPass = true;
 
         # 最后一次提交增加请求次数
@@ -59,7 +57,7 @@ class CountController extends Controller
             $captcha->addTimes($request, 'count');
         }
 
-        if (!$isPass) {
+        if ($isPass) {
             $model = Score::query()->firstOrNew(['openid' => $post['integral']]);
 
             $model->phone = $post['tel'] ?? "";
