@@ -21,6 +21,8 @@ class Captcha
             $params = $request->input('data');
         }
 
+        $key = $interface.'submit_time';
+
         if (!empty($request->input('img_code')) || !empty($request->input('data.img_code')) || !empty($request->input('captcha'))) {
 
             $img_code = $request->input('img_code') ?? $request->input('captcha');
@@ -34,10 +36,8 @@ class Captcha
             if ($validator->fails()) {
                 return false;
             }
-
+            $request->session()->put($key, 0);
         } else {
-            $key = $interface.'submit_time';
-
             $times = $request->session()->get($key);
             if ($times && $times >= 3) {
                 return false;
