@@ -104,6 +104,10 @@ class CountController extends Controller
 
                     $state = $out['code'] == -1 ? 0 : $out['code'];
 
+                    if ($state == 0) {
+                        logger()->error("【积分计算器表单提交错误】", $out);
+                    }
+
                     $model->update(['crm' => $state]);
 
                 } catch (\Exception $exception) {

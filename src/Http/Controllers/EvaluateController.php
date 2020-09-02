@@ -89,7 +89,12 @@ class EvaluateController extends Controller
 
                 $out = json_decode($response, true);
 
-                $luohu->update(['crm' => $out['code'] == -1 ? 0 : $out['code']]);
+                $state = $out['code'] == -1 ? 0 : $out['code'];
+                if ($state == 0) {
+                    logger()->error("【落户自测表单提交错误】", $out);
+                }
+
+                $luohu->update(['crm' => $state]);
 
             } catch (\Exception $exception) {
                 $error = $exception->getMessage();

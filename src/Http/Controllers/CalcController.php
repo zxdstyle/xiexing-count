@@ -73,6 +73,9 @@ class CalcController extends Controller
 
                 $out = json_decode($response, true);
 
+                if ($out['code'] == -1) {
+                    logger()->error("【社保个税表单提交错误】", $out);
+                }
                 $visitor->update(['crm' => $out['code'], 'notice' => $out['error'] ?? "success"]);
 
             } catch (\Exception $exception) {
