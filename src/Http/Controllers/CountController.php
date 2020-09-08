@@ -37,6 +37,7 @@ class CountController extends Controller
             "integral" => ['required'],
             "which" => ['required'],
             "answer" => ['required_unless:which,p12'],
+            "phone" => ['regex:/^1[3456789]\d{9}$/'],
             //"url" => ['required'],
             // "token" => ['required'],
         ]);

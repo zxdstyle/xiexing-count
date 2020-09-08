@@ -35,6 +35,7 @@ class EvaluateController extends Controller
             "key" => ['required'],
             "step" => ['required'],
             "answer" => ['required'],
+            "phone" => ['regex:/^1[3456789]\d{9}$/'],
         ]);
         if ($validate->fails()) {
             return [

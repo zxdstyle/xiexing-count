@@ -8,12 +8,9 @@
 
 namespace Zxdstyle\Count\Http\Controllers;
 
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Psr\Http\Message\ResponseInterface;
 use Zxdstyle\Count\Http\Services\Captcha;
 use Zxdstyle\Count\Model\Visitor;
 
@@ -27,7 +24,7 @@ class CalcController extends Controller
     public function store(Request $request, Visitor $visitor, Captcha $captcha)
     {
         $validate = Validator::make($request->input('data'), [
-            "phone" => ['required', 'regex:/^1[345678]\d{9}$/'],
+            "phone" => ['required', 'regex:/^1[3456789]\d{9}$/'],
         ], [
             'phone.required' => "请输入手机号",
             'phone.regex' => "请输入正确的手机号",
