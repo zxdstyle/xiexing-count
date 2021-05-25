@@ -59,6 +59,8 @@ class Controller extends BaseController
         $dataUrl = $url.'/api/form-input';
 
         $client = new Client();
+        
+        $client->setDefaultOption('verify', false);
 
         return $client->post($dataUrl, [
             "headers" => [
