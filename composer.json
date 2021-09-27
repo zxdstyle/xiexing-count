@@ -8,7 +8,7 @@
     }],
     "require": {
         "whichbrowser/parser": "^2.0",
-        "guzzlehttp/guzzle": "^6.4",
+        "guzzlehttp/guzzle": "^6.4|^7",
         "mews/captcha": "^2.3|^3.0"
     },
     "autoload": {
